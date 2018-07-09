@@ -45,7 +45,7 @@ class User implements UserInterface
     private $registrationDate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $lastConnexionDate;
 
@@ -64,21 +64,36 @@ class User implements UserInterface
      */
     private $messageRecived;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
-        $this->contactInfo = new ArrayCollection();
+        $this->articles = new ArrayCollection();
+        $this->registrationDate = new \DateTime();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
+    /**
+     * @param string $firstname
+     *
+     * @return \App\Entity\User
+     */
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
@@ -86,11 +101,19 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
+    /**
+     * @param string $lastname
+     *
+     * @return \App\Entity\User
+     */
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
@@ -98,11 +121,19 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     *
+     * @return \App\Entity\User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -110,11 +141,19 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     *
+     * @return \App\Entity\User
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -122,11 +161,19 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getRegistrationDate(): ?\DateTimeInterface
     {
         return $this->registrationDate;
     }
 
+    /**
+     * @param \DateTimeInterface $registrationDate
+     *
+     * @return \App\Entity\User
+     */
     public function setRegistrationDate(\DateTimeInterface $registrationDate): self
     {
         $this->registrationDate = $registrationDate;
@@ -134,23 +181,33 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getLastConnexionDate(): ?\DateTimeInterface
     {
         return $this->lastConnexionDate;
     }
 
-    public function setLastConnexionDate(\DateTimeInterface $lastConnexionDate): self
+    public function setLastConnexionDate($timestamp = 'now'): self
     {
-        $this->lastConnexionDate = $lastConnexionDate;
-
+        $this->lastConnexionDate = new \DateTime($timestamp);
         return $this;
     }
 
+    /**
+     * @return array|null
+     */
     public function getRoles(): ?array
     {
         return $this->roles;
     }
 
+    /**
+     * @param array $roles
+     *
+     * @return \App\Entity\User
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -166,6 +223,11 @@ class User implements UserInterface
         return $this->contactInfo;
     }
 
+    /**
+     * @param \App\Entity\ContactInformation $contactInfo
+     *
+     * @return \App\Entity\User
+     */
     public function addContactInfo(ContactInformation $contactInfo): self
     {
         if (!$this->contactInfo->contains($contactInfo)) {
@@ -176,6 +238,11 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param \App\Entity\ContactInformation $contactInfo
+     *
+     * @return \App\Entity\User
+     */
     public function removeContactInfo(ContactInformation $contactInfo): self
     {
         if ($this->contactInfo->contains($contactInfo)) {
@@ -222,15 +289,27 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+    /**
+     * @return \App\Entity\Message|null
+     */
     public function getMessageRecived(): ?Message
     {
         return $this->messageRecived;
     }
 
+    /**
+     * @param \App\Entity\Message|null $messageRecived
+     *
+     * @return \App\Entity\User
+     */
     public function setMessageRecived(?Message $messageRecived): self
     {
         $this->messageRecived = $messageRecived;
 
         return $this;
     }
+
+
+
+
 }

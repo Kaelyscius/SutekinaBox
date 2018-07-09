@@ -1,0 +1,79 @@
+{% extends "admin.html.twig" %}
+{% set active = 'adduser' %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="signup-page">
+
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Admin<b>BSB</b></a>
+            <small>Admin BootStrap Based - Material Design</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                <h3>Vos informations</h3>
+                {{ form_start(form, {'attr': {'id': 'sign_up'}}) }}
+                <div class="msg">Register a new membership</div>
+                <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                    <div class="form-line">
+                        {{ form_errors(form.firstname) }}
+                        {{ form_widget(form.firstname) }}
+                        {{ form_help(form.firstname) }}
+                    </div>
+                </div>
+                <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                    <div class="form-line">
+                        {{ form_errors(form.lastname) }}
+                        {{ form_widget(form.lastname) }}
+                        {{ form_help(form.lastname) }}
+                    </div>
+                </div>
+                <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                    <div class="form-line">
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_help(form.email) }}
+                    </div>
+                </div>
+                <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                    <div class="form-line">
+                        {{ form_errors(form.password) }}
+                        {{ form_widget(form.password) }}
+                        {{ form_help(form.password) }}
+                    </div>
+                </div>
+
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
