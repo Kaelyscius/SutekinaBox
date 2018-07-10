@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,21 @@ class SutekinaBox
      * @ORM\Column(type="datetime")
      */
     private $creationDate;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $state;
+
+    /**
+     * SutekinaBox constructor.
+     *
+     * @param \Doctrine\Bundle\DoctrineBundle\Registry $state
+     */
+    public function __construct(Registry $state)
+    {
+        $this->state = $state;
+    }
 
     public function getId()
     {
@@ -88,4 +104,25 @@ class SutekinaBox
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     *
+     * @return SutekinaBox
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+
 }

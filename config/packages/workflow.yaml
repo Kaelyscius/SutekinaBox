@@ -1,2 +1,26 @@
 framework:
-    workflows: ~
+    workflows:
+        sutekinabox_publishing:
+            type: 'state_machine' # or 'workflow'
+            marking_store:
+                type: 'single_state' # or 'multiple_state'
+                arguments:
+                    - 'state'
+            supports:
+                - App\Entity\SutekinaBox
+            initial_place: to_validate
+            places:
+                - to_validate
+                - to_check_stock
+                - validate
+                - prepatation_allowed
+            transitions:
+                to_validate:
+                    from: to_validate
+                    to:   to_check_stock
+                tp_check:
+                    from: to_check_stock
+                    to:   validate
+                validate:
+                    from: validate
+                    to:   prepatation_allowed

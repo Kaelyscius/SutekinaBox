@@ -89,7 +89,7 @@ class LoadFaker extends Fixture
 
         for ($i = 1; $i <= 10; $i++) {
             $supplier = new Supplier();
-            $supplier->setName('Entreprise n° '.$i);
+            $supplier->setName($this->faker->company);
             $supplier->setAddress($this->faker->streetAddress);
             $supplier->setPostalCode($this->faker->postcode);
             $supplier->setCity($this->faker->city);
