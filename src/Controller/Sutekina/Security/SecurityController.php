@@ -41,7 +41,7 @@ class SecurityController extends Controller
 
         #Transmission a la vue :
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('static/login.html.twig', [
            'form' => $form->createView(),
            'error' => $error
         ]);

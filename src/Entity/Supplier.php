@@ -170,6 +170,17 @@ class Supplier
         return $this;
     }
 
+    /**
+     * @param mixed $articles
+     *
+     * @return \App\Entity\Supplier
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+        return $this;
+    }
+
     public function removeProduct(product $product): self
     {
         if ($this->products->contains($product)) {

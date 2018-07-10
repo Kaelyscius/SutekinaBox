@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends "base.admin.html.twig" %}
 
 {#on peut aller chercher ce que tu créer dans twig.yaml#}
 {#{% set categories = category_service.findAll() %}#}
@@ -25,13 +25,15 @@
 
     <!-- Custom Css -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <![endif]-->
+    <link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
 
 
-    {#{% include 'components/_nav.html.twig' %}#}
+    {% include 'admin/components/_nav_admin.html.twig' %}
+
+    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar')) }}
 
     <!--Contenu des vues-->
     {% block content '' %}

@@ -52,7 +52,7 @@ class UserController extends Controller
         }
 
         #Affichage du formulaire dans la vue
-        return $this->render('user/adduser.html.twig', [
+        return $this->render('static/register.html.twig', [
             'form' => $form->createView()
         ]);
 
