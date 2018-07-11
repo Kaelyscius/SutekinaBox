@@ -1,7 +1,8 @@
-sidebar.admin: Administrator
-sidebar.logout: Logout
+sidebar.admin: 'Administrator'
+sidebar.logout: 'Logout'
 sidebar.main_nav: 'Main navigation'
-sidebar.home: Home
-sidebar.product: Product
+sidebar.home: 'Home'
+sidebar.product: 'Product'
 sidebar.create_box: 'Create box'
 sidebar.manage_box: 'Manage box'
+sidebar.list_box: 'List box'

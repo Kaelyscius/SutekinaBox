@@ -38,32 +38,36 @@
         <div class="menu">
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 697px;"><ul class="list" style="overflow: hidden; width: auto; height: 697px;">
                     <li class="header">{{ 'sidebar.main_nav' | trans }}</li>
-                    <li>
+                    <li {% if (categoryActive == 'home') %} class="active" {% endif %}>
                         <a href="{{ path('admin_index') }}" class=" waves-effect waves-block">
                             <i class="material-icons">home</i>
                             <span>{{ 'sidebar.home' | trans }}</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li {% if (categoryActive == 'product') %} class="active" {% endif %}>
                         <a href="javascript:void(0);" class="menu-toggle toggled waves-effect waves-block">
                             <i class="material-icons">widgets</i>
                             <span>{{ 'sidebar.product' | trans }}</span>
                         </a>
                         <ul class="ml-menu" style="display: block;">
                             <ul class="ml-menu" style="display: block;">
-                                <li class="active">
+
+                                <li  {% if (sousCategoryActive == 'box_list') %} class="active" {% endif %}>
+                                    <a href="{{ path('admin_list_box') }}" class="toggled waves-effect waves-block">{{ 'sidebar.list_box' | trans }}</a>
+                                </li>
+                                <li  {% if (sousCategoryActive == 'box_create') %} class="active" {% endif %}>
                                     <a href="{{ path('admin_create_box') }}" class="toggled waves-effect waves-block">{{ 'sidebar.create_box' | trans }}</a>
                                 </li>
-                                <li>
+                                <li {% if (sousCategoryActive == 'box_manage') %} class="active" {% endif %}>
                                     <a href="../../../pages/widgets/cards/colored.html" class=" waves-effect waves-block">{{ 'sidebar.manage_box' | trans }}</a>
                                 </li>
                             </ul>
                         </ul>
                     </li>
-                    <li>
+                    <li {% if (categoryActive == 'achat') %} class="active" {% endif %}>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">swap_calls</i>
-                            <span>User Interface (UI)</span>
+                            <span>Service Achat</span>
                         </a>
                         <ul class="ml-menu">
                             <li>

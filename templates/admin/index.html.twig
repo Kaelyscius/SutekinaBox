@@ -1,6 +1,5 @@
 {% extends "admin.html.twig" %}
 
-{% set active = 'home' %}
 {% block page_title %}
     Accueil
 {% endblock %}
@@ -11,6 +10,7 @@
 {% endblock %}
 
 {% block content %}
+    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar',{ 'categoryActive': 'home' })) }}
 
 {% endblock %}
 

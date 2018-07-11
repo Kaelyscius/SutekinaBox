@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Workflow\Registry;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SutekinaBoxRepository")
@@ -40,17 +40,16 @@ class SutekinaBox
     /**
      * @ORM\Column(type="array", nullable=true)
      */
-    protected $state;
+    public $state;
 
     /**
      * SutekinaBox constructor.
      *
-     * @param \Doctrine\Bundle\DoctrineBundle\Registry $state
      */
-    public function __construct(Registry $state)
+    public function __construct()
     {
-        $this->state = $state;
-    }
+        $this->products = [];
+        }
 
     public function getId()
     {
@@ -88,7 +87,10 @@ class SutekinaBox
 
     public function setProducts(array $products): self
     {
-        $this->products = $products;
+        foreach ($products as $product)
+        {
+            $this->products = $products;
+        }
 
         return $this;
     }
@@ -123,6 +125,5 @@ class SutekinaBox
         $this->state = $state;
         return $this;
     }
-
 
 }

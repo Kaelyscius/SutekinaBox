@@ -29,16 +29,16 @@ class AdminIndexController extends Controller
      */
     public function index(): Response
     {
-
-
         return $this->render('admin/index.html.twig', [
 
         ]);
     }
 
-    public function sidebar(){
+    public function sidebar($categoryActive = 'home', $sousCategoryActive = ''){
         #Rendu
         return $this->render('admin/components/_sidebar.html.twig', [
+            'categoryActive' => $categoryActive,
+            'sousCategoryActive' => $sousCategoryActive,
         ]);
 
     }

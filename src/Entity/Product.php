@@ -31,6 +31,8 @@ class Product
      */
     private $supplierId;
 
+    private $isSelected;
+
     public function getId()
     {
         return $this->id;
@@ -71,4 +73,25 @@ class Product
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsSelected()
+    {
+        return $this->isSelected;
+    }
+
+    /**
+     * @param mixed $isSelected
+     *
+     * @return Product
+     */
+    public function setIsSelected($isSelected)
+    {
+        $this->isSelected = $isSelected;
+        return $this;
+    }
+
+
 }

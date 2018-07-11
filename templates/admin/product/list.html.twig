@@ -1,0 +1,95 @@
+{% extends "admin.html.twig" %}
+{% trans_default_domain 'admin_product' %}
+
+
+{% block page_title %}
+    {{ 'product.home' | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar', { 'categoryActive': 'product', 'sousCategoryActive' : 'box_list' })) }}
+
+    <section class="content">
+        {% for message in app.flashes('notice')  %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ 'product.home' | trans }}
+                                {{ dump(allBox) }}
+
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div id="DataTables_Table_0_wrapper"
+                                     class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable"
+                                                   id="DataTables_Table" role="grid"
+                                                   aria-describedby="DataTables_Table_0_info">
+                                                <thead>
+                                                <tr>
+                                                    <th rowspan="1" colspan="1">{{ 'product.select' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.name' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.price' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.supplier' | trans }}</th>
+                                                </tr>
+                                                </thead>
+                                                <tfoot>
+                                                <tr>
+                                                    <th rowspan="1" colspan="1">{{ 'product.select' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.name' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.price' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.supplier' | trans }}</th>
+                                                </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                {% for box in allBox %}
+
+                                                    <tr role="row">
+                                                        <td class="text-center">
+                                                            {{ dump(box) }}
+                                                        {#<td class="text-center">{{ product.vars.value.name }}</td>#}
+                                                        {#<td class="text-center">{{ product.vars.value.price }}</td>#}
+                                                        {#<td class="text-center">{{ product.vars.value.supplierId.name }}</td>#}
+                                                    </tr>
+                                                {% endfor %}
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block final_javascripts %}
+    {{ parent() }}
+    {#<script>#}
+        {#$(document).ready( function () {#}
+            {#$('#DataTables_Table').DataTable();#}
+        {#} );#}
+    {#</script>#}
+    {#<script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>#}
+    {#<script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>#}
+{% endblock %}
