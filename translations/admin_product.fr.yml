@@ -3,3 +3,9 @@ product.select: Selection
 product.name: 'Nom du produit'
 product.price: Prix
 product.supplier: Fournisseur
+product.box_name: Nom de la box
+product.creation_date: Date de création
+product.products: Produits
+product.budget: Budget
+product.status: Status de la box
+product.status_toValidate: A valider

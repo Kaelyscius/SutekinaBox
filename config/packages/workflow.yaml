@@ -1,13 +1,14 @@
 framework:
     workflows:
         sutekinabox_publishing:
-            type: 'state_machine' # or 'workflow'
+            type: 'workflow' # or 'state_machine'
             marking_store:
                 type: 'single_state' # or 'multiple_state'
                 arguments:
                     - 'state'
             supports:
                 - App\Entity\SutekinaBox
+                - App\SutekinaBox\SutekinaBoxRequest
             initial_place: to_validate
             places:
                 - to_validate

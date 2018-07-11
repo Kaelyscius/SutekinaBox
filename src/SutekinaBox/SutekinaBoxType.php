@@ -3,8 +3,8 @@
 namespace App\SutekinaBox;
 
 use App\Product\ProductType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,15 +30,11 @@ class SutekinaBoxType extends AbstractType
                     'placeholder' => 'Montant du budget'
                 ]
             ])
-            ->add('products', CollectionType::class, array(
+            ->add('products', EntityType::class, array(
                 // each entry in the array will be an "label" field
-                'entry_type' => ProductType::class,
-
-                // these options are passed to each "email" type
-                'entry_options' => array(
-                    'attr' => array(
-                        'class' => 'chk-col-teal',
-                    ),
+                'class' => ProductType::class,
+                'attr' => array(
+                    'class' => 'chk-col-teal',
                 ),
             ))
             ->add('Enregistrer', SubmitType::class, array(

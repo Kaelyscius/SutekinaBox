@@ -42,29 +42,42 @@
                                                    aria-describedby="DataTables_Table_0_info">
                                                 <thead>
                                                 <tr>
-                                                    <th rowspan="1" colspan="1">{{ 'product.select' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.name' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.price' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.supplier' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.box_name' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.creation_date' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
                                                 </tr>
                                                 </thead>
                                                 <tfoot>
                                                 <tr>
-                                                    <th rowspan="1" colspan="1">{{ 'product.select' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.name' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.price' | trans }}</th>
-                                                    <th rowspan="1" colspan="1">{{ 'product.supplier' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.box_name' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.creation_date' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
                                                 </tr>
                                                 </tfoot>
                                                 <tbody>
                                                 {% for box in allBox %}
 
                                                     <tr role="row">
+                                                        <td class="text-center">{{ box.name }}</td>
+                                                        <td class="text-center">{{ box.creationDate |date("Y/m/j h:m:s") }}</td>
+
                                                         <td class="text-center">
-                                                            {{ dump(box) }}
-                                                        {#<td class="text-center">{{ product.vars.value.name }}</td>#}
-                                                        {#<td class="text-center">{{ product.vars.value.price }}</td>#}
-                                                        {#<td class="text-center">{{ product.vars.value.supplierId.name }}</td>#}
+                                                            {% for product in box.products %}
+                                                               <div>{{ product.name }}</div>
+                                                            {% endfor %}
+
+                                                        </td>
+                                                        <td class="text-center">{{ box.budget }}</td>
+                                                        <td class="text-center">
+                                                            {% if  box.state == 'to_validate' %}
+                                                                {{ 'product.status_toValidate' | trans }}
+                                                            {% endif %}
+
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
 

@@ -62,8 +62,8 @@ class ProductController extends Controller
 
 
         $sutekinaBox = new SutekinaBoxRequest(); #Pour laisser notre service faire le boulot.
-        $products = $manager->getRepository(Product::class)->findAll();
-        $sutekinaBox->setProducts($products);
+//        $products = $manager->getRepository(Product::class)->findAll();
+//        $sutekinaBox->setProducts($products);
 
 
         #Créer un Formulaire permettant l'ajout d'une box
@@ -74,7 +74,6 @@ class ProductController extends Controller
 //            dd($workflows);
 
             $workflow = $workflows->get($sutekinaBox);
-            dd($workflow);
 
             $workflow->can($sutekinaBox, 'to_validate'); // False
             $workflow->can($sutekinaBox, 'to_check_stock'); // True
