@@ -19,32 +19,47 @@ class SutekinaBoxRepository extends ServiceEntityRepository
         parent::__construct($registry, SutekinaBox::class);
     }
 
-//    /**
-//     * @return SutekinaBox[] Returns an array of SutekinaBox objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findAllProductsByBox($boxId)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('b')
+            // p.category refers to the "category" property on product
+            ->innerJoin('b.sutekina_box_product', 'bp')
+            // selects all the category data to avoid the query
+//            ->addSelect('c')
+            ->andWhere('b.id = :id')
+            ->setParameter('id', $boxId)
+            ->getQuery();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?SutekinaBox
+    public function findAllToValidateBox()
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.state = :state')
+            ->setParameter('state', serialize('to_validate'))
+            ->getQuery()->execute();
     }
-    */
+
+    public function findAllToCheckStockBox()
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.state = :state')
+            ->setParameter('state', serialize('to_check_stock'))
+            ->getQuery()->execute();
+    }
+
+    public function findAllValidatedBox()
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.state = :state')
+            ->setParameter('state', serialize('validate'))
+            ->getQuery()->execute();
+    }
+
+    public function findAllPreparedBox()
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.state = :state')
+            ->setParameter('state', serialize('prepatation_allowed'))
+            ->getQuery()->execute();
+    }
 }

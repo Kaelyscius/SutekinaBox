@@ -34,8 +34,9 @@ class ProductController extends Controller
      */
     public function listBox(ObjectManager $manager): Response
     {
-        $allBox = $manager->getRepository(SutekinaBox::class)->findAll();
-
+        $allBox = $manager->getRepository(SutekinaBox::class)
+            ->findAllPreparedBox();
+        dump($allBox);
         return $this->render('admin/product/list.html.twig', [
             'allBox' => $allBox,
         ]);
@@ -70,8 +71,9 @@ class ProductController extends Controller
         $form = $this->createForm(SutekinaBoxType::class,$sutekinaBox)->handleRequest($request);
 
         #Verification des données du formulaire
+
+
         if ($form->isSubmitted() && $form->isValid()){
-//            dd($workflows);
 
             $workflow = $workflows->get($sutekinaBox);
 
@@ -80,26 +82,24 @@ class ProductController extends Controller
 
             // Update the currentState on the post
             try {
-                $workflow->apply($sutekinaBox, 'to_check_stock');
+                $workflow->apply($sutekinaBox, 'to_validate');
+                /**
+                 * Une fois le formulaire soumis et valide on passe nos données directement au service
+                 * qui se chargera du trainement.
+                 */
+
+                $sutekinaBoxRequestHandler->handle($sutekinaBox);
+                $allBox = $manager->getRepository(SutekinaBox::class)->findAllProductsByBox($sutekinaBox->getId());
+                #Message flash
+                $this->addFlash('notice', 'Box bien crée !');
+
+                #Redirection sur l'article qui vient d'être crée.
+                return $this->redirectToRoute('admin_list_box', [
+                    'allBox' => $allBox,
+                ]);
             } catch (TransitionException $exception) {
                 // ... if the transition is not allowed
             }
-            /**
-             * Une fois le formulaire soumis et valide on passe nos données directement au service
-             * qui se chargera du trainement.
-             */
-            $sutekinaBoxRequestHandler->handle($sutekinaBox);
-            $allBox = $manager->getRepository(SutekinaBox::class)->findAll();
-            #Message flash
-            $this->addFlash('notice', 'Box bien crée !');
-
-            #Redirection sur l'article qui vient d'être crée.
-            return $this->redirectToRoute('admin_list_box', [
-                'allBox' => $allBox,
-            ]);
-
-
-
         }
 
         #Affichage du formulaire dans la vue

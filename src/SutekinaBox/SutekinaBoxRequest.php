@@ -18,6 +18,7 @@ class SutekinaBoxRequest {
     private $creationDate;
 
     public $state;
+    private $product;
 
     /**
      * @return mixed
@@ -25,6 +26,7 @@ class SutekinaBoxRequest {
     public function getId()
     {
         return $this->id;
+        $this->product = new ArrayCollection();
     }
 
     /**
@@ -151,5 +153,25 @@ class SutekinaBoxRequest {
 
         return $sutekinaBoxRequest;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param mixed $product
+     *
+     * @return SutekinaBoxRequest
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+        return $this;
+    }
+
 
 }

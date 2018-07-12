@@ -13,15 +13,15 @@ framework:
             places:
                 - to_validate
                 - to_check_stock
-                - validate
+                - validated
                 - prepatation_allowed
             transitions:
                 to_validate:
                     from: to_validate
                     to:   to_check_stock
-                tp_check:
+                to_check:
                     from: to_check_stock
-                    to:   validate
+                    to:   validated
                 validate:
-                    from: validate
+                    from: validated
                     to:   prepatation_allowed

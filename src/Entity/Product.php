@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -37,6 +38,7 @@ class Product
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\SutekinaBox", mappedBy="product")
+     * @JoinTable(name="sutekina_box_product")
      */
     private $sutekinaBoxes;
 

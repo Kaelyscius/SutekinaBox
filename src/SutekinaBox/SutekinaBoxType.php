@@ -2,12 +2,16 @@
 
 namespace App\SutekinaBox;
 
+use App\Entity\Product;
 use App\Product\ProductType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SutekinaBoxType extends AbstractType
@@ -32,7 +36,13 @@ class SutekinaBoxType extends AbstractType
             ])
             ->add('products', EntityType::class, array(
                 // each entry in the array will be an "label" field
-                'class' => ProductType::class,
+                'class' => Product::class,
+                'choice_value'  => 'id',
+                'choice_label'  => function ($product) {
+                    return $product->getName() . ' | ' . $product->getPrice() . ' | ' . $product->getSupplierId()->getName();
+                },
+                'multiple'      => true,
+                'expanded'      => true,
                 'attr' => array(
                     'class' => 'chk-col-teal',
                 ),
@@ -52,7 +62,6 @@ class SutekinaBoxType extends AbstractType
     {
         $resolver->setDefaults([
             #Indiquer quel type de donnée sera a traiter par un formulaire
-//            'data_class' => Article::class
             'data_class' => SutekinaBoxRequest::class, #On ne prend plus une instance d'article, mais directement le service lié
         ]);
     }

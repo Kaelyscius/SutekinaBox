@@ -27,7 +27,6 @@
                         <div class="header">
                             <h2>
                                 {{ 'product.home' | trans }}
-                                {{ dump(allBox) }}
 
                             </h2>
                         </div>
@@ -60,13 +59,14 @@
                                                 </tfoot>
                                                 <tbody>
                                                 {% for box in allBox %}
-
                                                     <tr role="row">
-                                                        <td class="text-center">{{ box.name }}</td>
+                                                        <td class="text-center">
+                                                            {{ box.name }}
+                                                        </td>
                                                         <td class="text-center">{{ box.creationDate |date("Y/m/j h:m:s") }}</td>
 
                                                         <td class="text-center">
-                                                            {% for product in box.products %}
+                                                            {% for product in box.product %}
                                                                <div>{{ product.name }}</div>
                                                             {% endfor %}
 
@@ -98,11 +98,11 @@
 
 {% block final_javascripts %}
     {{ parent() }}
-    {#<script>#}
-        {#$(document).ready( function () {#}
-            {#$('#DataTables_Table').DataTable();#}
-        {#} );#}
-    {#</script>#}
-    {#<script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>#}
-    {#<script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>#}
+    <script>
+        $(document).ready( function () {
+            $('#DataTables_Table').DataTable();
+        } );
+    </script>
+    <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
 {% endblock %}

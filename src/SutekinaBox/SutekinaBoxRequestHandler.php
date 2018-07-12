@@ -38,7 +38,6 @@ class SutekinaBoxRequestHandler
     {
         #Appel a notre factory
         $sutekina = $this->sutekina->createFromSutekinaBoxRequest($request);
-
         #insertion en BDD
         $this->em->persist($sutekina);
         $this->em->flush();

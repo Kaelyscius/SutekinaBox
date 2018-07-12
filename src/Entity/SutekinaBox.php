@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Component\Workflow\Registry;
 
 /**
@@ -30,11 +31,6 @@ class SutekinaBox
     private $budget;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $products;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $creationDate;
@@ -55,7 +51,6 @@ class SutekinaBox
      */
     public function __construct()
     {
-        $this->products = [];
         $this->creationDate = new \DateTime();
         $this->product = new ArrayCollection();
     }
@@ -85,21 +80,6 @@ class SutekinaBox
     public function setBudget(float $budget): self
     {
         $this->budget = $budget;
-
-        return $this;
-    }
-
-    public function getProducts(): ?array
-    {
-        return $this->products;
-    }
-
-    public function setProducts(array $products): self
-    {
-        foreach ($products as $product)
-        {
-            $this->products = $products;
-        }
 
         return $this;
     }
