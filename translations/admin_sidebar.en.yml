@@ -8,4 +8,5 @@ sidebar.manage_box: 'Manage box'
 sidebar.list_box: 'List box'
 sidebar.validation_askforstock: 'Box ask to stock'
 sidebar.validation_purchase_box: 'Box to be purchase'
-sidebar.validation_ask_for_validate: Box asked for validation
+sidebar.validation_ask_for_validate: 'Box asked for validation'
+sidebar.ask_for_product: Ask for product to supplier

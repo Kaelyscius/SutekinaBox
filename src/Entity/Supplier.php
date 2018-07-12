@@ -54,7 +54,7 @@ class Supplier
     private $contactName;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\product", mappedBy="supplierId")
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="supplierId")
      */
     private $products;
 

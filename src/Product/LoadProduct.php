@@ -11,23 +11,26 @@ use Faker;
 class LoadProduct
 {
     private $products;
+
     /**
      * Load data fixtures with the passed EntityManager
      *
      * @param ObjectManager $manager
      * @param int           $number number of element
      *
+     * @param               $id of supplier
+     *
+     * @return
      * @throws \Exception
      */
-    public function addProducts(ObjectManager $manager, $number = 10)
+    public function addProducts(ObjectManager $manager, $number = 10, $id)
     {
         // On configure dans quelles langues nous voulons nos données
         $faker = Faker\Factory::create('fr_FR');
 
-        $suppliers = $manager->getRepository(Supplier::class)->findAll();
-        $supplier = $suppliers[random_int(0, count($suppliers)-1)];
+        $supplier = $manager->getRepository(Supplier::class)->find($id);
         // on créé 10 personnes
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $product = new Product();
             $product->setName('Produit ref: '. $faker->ean13 );
             $product->setPrice($faker->randomNumber(2));

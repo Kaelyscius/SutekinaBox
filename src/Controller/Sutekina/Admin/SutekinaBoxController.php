@@ -9,7 +9,9 @@
 namespace App\Controller\Sutekina\Admin;
 
 
+use App\Entity\Supplier;
 use App\Entity\SutekinaBox;
+use App\Form\SupplierType;
 use App\SutekinaBox\SutekinaBoxRequest;
 use App\SutekinaBox\SutekinaBoxRequestHandler;
 use App\SutekinaBox\SutekinaBoxType;
@@ -51,6 +53,8 @@ class SutekinaBoxController extends Controller
         ]);
     }
 
+
+
     /**
      * @Route(
      *     "/admin/createbox",
@@ -78,6 +82,7 @@ class SutekinaBoxController extends Controller
 
         #Créer un Formulaire permettant l'ajout d'une box
         $form = $this->createForm(SutekinaBoxType::class,$sutekinaBox)->handleRequest($request);
+
 
         #Verification des données du formulaire
 

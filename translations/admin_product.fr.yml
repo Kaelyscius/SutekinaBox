@@ -9,3 +9,8 @@ product.products: Produits
 product.budget: Budget
 product.status: 'Status de la box'
 product.status_toValidate: 'A valider'
+product.product_supplier: Fournisseurs
+product.status_to_check_stock: 'Vérification du stock'
+product.status_to_purchase: 'En cours d''approvisionnement'
+product.status_prepatation_allowed: 'Box prête à la vente'
+product.status_created: 'Box à recréer'

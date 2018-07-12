@@ -1,0 +1,68 @@
+{% extends "admin.html.twig" %}
+{% trans_default_domain 'admin_product' %}
+{% set buttonPath = "admin_" ~categoryActive~ "_"~sousCategoryActive %}
+
+
+{% block page_title %}
+    {{ 'product.home' | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar', { 'categoryActive': categoryActive, 'sousCategoryActive' : sousCategoryActive })) }}
+
+    <section class="content">
+        {% for message in app.flashes('notice')  %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>
+                                {{ supplierProducts[0].supplierId.name }} - {{ supplierProducts[0].supplierId.contactName }} <small> Votre demande de produits</small>
+                            </h2>
+                            <ul class="header-dropdown m-r-0">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <i class="material-icons">info_outline</i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <i class="material-icons">help_outline</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            Bonjour monsieur {{ app.user.firstname }} {{ app.user.lastname }}
+                            Suites à votre demande voici une liste de nos derniers produits. En espérant vous satisfaire.
+                            <ul class="list-group">
+                            {% for product in supplierProducts %}
+                                <li class="list-group-item">
+                                    {{ product.name }}
+                                    <span class="badge bg-teal">{{ product.price }} €</span>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block final_javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+

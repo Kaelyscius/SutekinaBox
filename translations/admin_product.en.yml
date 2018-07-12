@@ -9,3 +9,8 @@ product.products: Products
 product.budget: Budget
 product.status: Status
 product.status_toValidate: 'To validate'
+product.product_supplier: Supplier
+product.status_to_check_stock: 'Stock validation'
+product.status_to_purchase: 'On provision'
+product.status_prepatation_allowed: 'Ready to retail'
+product.status_created: 'Recreate box'

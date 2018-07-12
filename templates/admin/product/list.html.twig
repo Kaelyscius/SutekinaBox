@@ -45,6 +45,7 @@
                                                     <th rowspan="1" colspan="1">{{ 'product.box_name' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.creation_date' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.product_supplier' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
                                                     <th rowspan="1" colspan="1">Action</th>
@@ -55,6 +56,7 @@
                                                     <th rowspan="1" colspan="1">{{ 'product.box_name' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.creation_date' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">{{ 'product.product_supplier' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
                                                     <th rowspan="1" colspan="1">Action</th>
@@ -75,15 +77,28 @@
                                                             {% endfor %}
 
                                                         </td>
-                                                        <td class="text-center">{{ box.budget }}</td>
                                                         <td class="text-center">
-                                                            {% if  box.state == 'to_validate' %}
-                                                                {{ 'product.status_toValidate' | trans }}
-                                                            {% endif %}
+                                                            {% for product in box.product %}
+                                                                <div>{{ product.supplierId.name }}</div>
+                                                            {% endfor %}
 
                                                         </td>
+                                                        <td class="text-center">{{ box.budget }}</td>
+                                                        <td class="text-center">
+                                                            {% if  box.state == 'to_validated' %}
+                                                                {{ 'product.status_toValidate' | trans }}
+                                                            {% elseif (box.state == 'to_check_stock') %}
+                                                                {{ 'product.status_to_check_stock' | trans }}
+                                                            {% elseif (box.state == 'to_purchase') %}
+                                                                {{ 'product.status_to_purchase' | trans }}
+                                                            {% elseif (box.state == 'prepatation_allowed') %}
+                                                                {{ 'product.status_prepatation_allowed' | trans }}
+                                                            {% elseif (box.state == 'created') %}
+                                                                {{ 'product.status_created' | trans }}
+                                                            {% endif %}
+                                                        </td>
                                                         <td>
-                                                           <a href="{{ path(buttonPath,{ 'id': box.id } ) }}">  <button class="btn btn-block btn-lg btn-success waves-effect">Valider</button></a>
+                                                           <a href="{{ path(buttonPath,{ 'id': box.id, 'validate' : true } ) }}">  <button class="btn btn-block btn-lg btn-success waves-effect">Valider</button></a>
                                                             {#<button><a href="{{ path("") }}"> Test</a></button>#}
                                                         </td>
                                                     </tr>

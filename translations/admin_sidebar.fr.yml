@@ -8,4 +8,5 @@ sidebar.manage_box: 'Gestion des boxs'
 sidebar.list_box: 'Liste des boxs'
 sidebar.validation_askforstock: 'Box en demande de stock'
 sidebar.validation_purchase_box: 'Box à valider pour achat'
-sidebar.validation_ask_for_validate: Box en demande de validation
+sidebar.validation_ask_for_validate: 'Box en demande de validation'
+sidebar.ask_for_product: Demande de produit au fournisseur
