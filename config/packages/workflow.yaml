@@ -9,19 +9,23 @@ framework:
             supports:
                 - App\Entity\SutekinaBox
                 - App\SutekinaBox\SutekinaBoxRequest
-            initial_place: to_validate
+            initial_place: created
             places:
-                - to_validate
+                - created
+                - to_validated
                 - to_check_stock
-                - validated
+                - to_purchase
                 - prepatation_allowed
             transitions:
                 to_validate:
-                    from: to_validate
-                    to:   to_check_stock
+                    from: created
+                    to:   to_validated
                 to_check:
+                    from: to_validated
+                    to:   to_check_stock
+                to_purchase:
                     from: to_check_stock
-                    to:   validated
-                validate:
-                    from: validated
+                    to:   to_purchase
+                to_be_prepared:
+                    from: to_purchase
                     to:   prepatation_allowed

@@ -3,9 +3,9 @@ product.select: Select
 product.name: 'Product Name'
 product.price: Price
 product.supplier: Supplier
-product.box_name: Box name
-product.creation_date: Creation date
+product.box_name: 'Box name'
+product.creation_date: 'Creation date'
 product.products: Products
 product.budget: Budget
 product.status: Status
-product.status_toValidate: To validate
+product.status_toValidate: 'To validate'

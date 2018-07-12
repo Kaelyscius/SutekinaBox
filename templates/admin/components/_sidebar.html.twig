@@ -64,20 +64,23 @@
                             </ul>
                         </ul>
                     </li>
-                    <li {% if (categoryActive == 'achat') %} class="active" {% endif %}>
+                    <li {% if (categoryActive == 'purchase') %} class="active" {% endif %}>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">swap_calls</i>
                             <span>Service Achat</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="../../../pages/ui/alerts.html" class=" waves-effect waves-block">Alerts</a>
+                            <li {% if (sousCategoryActive == 'ask_to_validate') %} class="active" {% endif %}>
+                                <a href="{{ path('admin_box_to_validate') }}" class=" waves-effect waves-block">{{ 'sidebar.validation_ask_for_validate' | trans }}</a>
                             </li>
-                            <li>
-                                <a href="../../../pages/ui/animations.html" class=" waves-effect waves-block">Animations</a>
+                            <li {% if (sousCategoryActive == 'ask_for_stock') %} class="active" {% endif %}>
+                                <a href="{{ path('admin_box_ask_for_stock') }}" class=" waves-effect waves-block">{{ 'sidebar.validation_askforstock' | trans }}</a>
                             </li>
-                            <li>
-                                <a href="../../../pages/ui/badges.html" class=" waves-effect waves-block">Badges</a>
+                            <li {% if (sousCategoryActive == 'validation_purchase_box') %} class="active" {% endif %}>
+                                <a href="{{ path('admin_box_to_purchase') }}" class=" waves-effect waves-block">{{ 'sidebar.validation_purchase_box' | trans }}</a>
+                            </li>
+                            <li {% if (sousCategoryActive == 'manage_box') %} class="active" {% endif %}>
+                                <a href="{{ path('admin_ready_to_prepare') }}" class=" waves-effect waves-block">{{ 'sidebar.manage_box' | trans }}</a>
                             </li>
 
                         </ul>

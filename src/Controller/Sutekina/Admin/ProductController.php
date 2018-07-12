@@ -32,13 +32,14 @@ class ProductController extends Controller
      *
      * @return Response
      */
-    public function listBox(ObjectManager $manager): Response
+    public function listBoxReadyToPrepare(ObjectManager $manager): Response
     {
         $allBox = $manager->getRepository(SutekinaBox::class)
             ->findAllPreparedBox();
-        dump($allBox);
         return $this->render('admin/product/list.html.twig', [
             'allBox' => $allBox,
+            'categoryActive' => 'product',
+            'sousCategoryActive' => 'box_list',
         ]);
     }
 
@@ -77,8 +78,8 @@ class ProductController extends Controller
 
             $workflow = $workflows->get($sutekinaBox);
 
-            $workflow->can($sutekinaBox, 'to_validate'); // False
-            $workflow->can($sutekinaBox, 'to_check_stock'); // True
+            $workflow->can($sutekinaBox, 'created'); // False
+            $workflow->can($sutekinaBox, 'to_validated'); // True
 
             // Update the currentState on the post
             try {
@@ -104,8 +105,108 @@ class ProductController extends Controller
 
         #Affichage du formulaire dans la vue
         return $this->render('admin/product/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categoryActive' => 'product',
+            'sousCategoryActive' => 'box_create',
         ]);
     }
 
+
+
+    /**
+     * @Route(
+     *     "/admin/box_to_validate",
+     *     name="admin_box_to_validate",
+     *     methods={"GET"},
+     *     )
+     * Le paramètre method HTTP
+     *
+     *
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     *
+     * @return Response
+     */
+    public function boxToValidate(ObjectManager $manager): Response
+    {
+        $allBox = $manager->getRepository(SutekinaBox::class)
+            ->findAllToValidatedBox();
+        return $this->render('admin/product/list.html.twig', [
+            'allBox' => $allBox,
+            'categoryActive' => 'purchase',
+            'sousCategoryActive' => 'ask_to_validate',
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     "/admin/box_ask_for_stock",
+     *     name="admin_box_ask_for_stock",
+     *     methods={"GET"},
+     *     )
+     * Le paramètre method HTTP
+     *
+     *
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     *
+     * @return Response
+     */
+    public function boxToCheckStock(ObjectManager $manager): Response
+    {
+        $allBox = $manager->getRepository(SutekinaBox::class)
+            ->findAllToCheckStockBox();
+        return $this->render('admin/product/list.html.twig', [
+            'allBox' => $allBox,
+            'categoryActive' => 'purchase',
+            'sousCategoryActive' => 'ask_for_stock',
+        ]);
+    }
+
+
+    /**
+     * @Route(
+     *     "/admin/box_to_purchase",
+     *     name="admin_box_to_purchase",
+     *     methods={"GET"},
+     *     )
+     * Le paramètre method HTTP
+     *
+     *
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     *
+     * @return Response
+     */
+    public function boxToPurchase(ObjectManager $manager): Response
+    {
+        $allBox = $manager->getRepository(SutekinaBox::class)
+            ->findAllToPurchaseBox();
+        return $this->render('admin/product/list.html.twig', [
+            'allBox' => $allBox,
+            'categoryActive' => 'purchase',
+            'sousCategoryActive' => 'validation_purchase_box',
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     "/admin/ready_to_prepare",
+     *     name="admin_ready_to_prepare",
+     *     methods={"GET"},
+     *     )
+     * Le paramètre method HTTP
+     *
+     *
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     *
+     * @return Response
+     */
+    public function boxReadyToPrepare(ObjectManager $manager): Response
+    {
+        $allBox = $manager->getRepository(SutekinaBox::class)
+            ->findAllPreparedBox();
+        return $this->render('admin/product/list.html.twig', [
+            'allBox' => $allBox,
+            'categoryActive' => 'purchase',
+            'sousCategoryActive' => 'manage_box',
+        ]);
+    }
 }

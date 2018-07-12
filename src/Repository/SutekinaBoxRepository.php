@@ -31,11 +31,11 @@ class SutekinaBoxRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function findAllToValidateBox()
+    public function findAllToValidatedBox()
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.state = :state')
-            ->setParameter('state', serialize('to_validate'))
+            ->setParameter('state', serialize('to_validated'))
             ->getQuery()->execute();
     }
 
@@ -47,11 +47,19 @@ class SutekinaBoxRepository extends ServiceEntityRepository
             ->getQuery()->execute();
     }
 
-    public function findAllValidatedBox()
+    public function findAllCreatedBox()
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.state = :state')
-            ->setParameter('state', serialize('validate'))
+            ->setParameter('state', serialize('created'))
+            ->getQuery()->execute();
+    }
+
+    public function findAllToPurchaseBox()
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.state = :state')
+            ->setParameter('state', serialize('to_purchase'))
             ->getQuery()->execute();
     }
 

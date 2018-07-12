@@ -1,5 +1,6 @@
 {% extends "admin.html.twig" %}
 {% trans_default_domain 'admin_product' %}
+{% set buttonPath = "admin_" ~categoryActive~ "_"~sousCategoryActive %}
 
 
 {% block page_title %}
@@ -12,7 +13,7 @@
 {% endblock %}
 
 {% block content %}
-    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar', { 'categoryActive': 'product', 'sousCategoryActive' : 'box_list' })) }}
+    {{ render(controller('App\\Controller\\Sutekina\\Admin\\AdminIndexController::sidebar', { 'categoryActive': categoryActive, 'sousCategoryActive' : sousCategoryActive })) }}
 
     <section class="content">
         {% for message in app.flashes('notice')  %}
@@ -46,6 +47,7 @@
                                                     <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tfoot>
@@ -55,6 +57,8 @@
                                                     <th rowspan="1" colspan="1">{{ 'product.products' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.budget' | trans }}</th>
                                                     <th rowspan="1" colspan="1">{{ 'product.status' | trans }}</th>
+                                                    <th rowspan="1" colspan="1">Action</th>
+
                                                 </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -77,6 +81,10 @@
                                                                 {{ 'product.status_toValidate' | trans }}
                                                             {% endif %}
 
+                                                        </td>
+                                                        <td>
+                                                           <a href="{{ path(buttonPath,{ 'id': box.id } ) }}">  <button class="btn btn-block btn-lg btn-success waves-effect">Valider</button></a>
+                                                            {#<button><a href="{{ path("") }}"> Test</a></button>#}
                                                         </td>
                                                     </tr>
                                                 {% endfor %}
