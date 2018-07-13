@@ -133,7 +133,7 @@ class SutekinaBoxController extends Controller
      *     methods={"GET"},
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
@@ -157,7 +157,7 @@ class SutekinaBoxController extends Controller
      *     methods={"GET"},
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
@@ -182,7 +182,7 @@ class SutekinaBoxController extends Controller
      *     methods={"GET"},
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
@@ -206,7 +206,7 @@ class SutekinaBoxController extends Controller
      *     methods={"GET"},
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *

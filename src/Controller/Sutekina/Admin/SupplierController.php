@@ -7,6 +7,7 @@ use App\Entity\Supplier;
 use App\Product\LoadProduct;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,7 +20,7 @@ class SupplierController extends Controller
      *     )
      * Le paramètre method HTTP
      *
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
      * @return Response
@@ -43,7 +44,7 @@ class SupplierController extends Controller
      *     name="admin_product_supplier_ask_for_product",
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *

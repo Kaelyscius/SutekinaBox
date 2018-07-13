@@ -10,6 +10,7 @@ namespace App\Controller\Sutekina\Admin;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,6 +23,7 @@ class AdminIndexController extends Controller
      *     name="admin_index",
      *     methods={"GET"},
      *     )
+     * @Security("has_role('ROLE_ADMIN')")
      * Le paramètre method HTTP
      *
      *

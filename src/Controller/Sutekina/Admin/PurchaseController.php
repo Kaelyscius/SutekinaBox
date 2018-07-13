@@ -12,6 +12,7 @@ namespace App\Controller\Sutekina\Admin;
 use App\Entity\SutekinaBox;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Workflow\Exception\TransitionException;
@@ -27,7 +28,7 @@ class PurchaseController extends Controller
      *     name="admin_purchase_ask_to_validate"
      *     )
      * Le paramètre method HTTP
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      *
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
@@ -84,7 +85,7 @@ class PurchaseController extends Controller
      *     )
      * Le paramètre method HTTP
      *
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      *
      *
